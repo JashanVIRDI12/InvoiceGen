@@ -1,0 +1,2 @@
+# InvoiceGen
+ Generate invoices easily
