@@ -1,3 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 .nav-link {
     color: white;
@@ -24,7 +27,6 @@
     transform: scaleX(1);
     transform-origin: bottom left;
 }
-
 
 .paragraph {
     font-size: 1.5rem;
@@ -95,4 +97,8 @@
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
+.div-hover {
+    transition: transform 0.1s ease;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
 
