@@ -32,7 +32,7 @@ export default function Home() {
         <div
             className="flex flex-col items-center justify-center min-h-screen text-white"
             style={{
-                backgroundImage: 'url(https://images.hdqwalls.com/wallpapers/gradient-blur-minimalism-fh.jpg)',
+                backgroundImage: 'url(https://cdn.pika.style/wallpapers/series-two/series-2-pika-wallpaper-3.png)',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
@@ -60,7 +60,6 @@ export default function Home() {
         </div>
     );
 }
-
 
 
 
