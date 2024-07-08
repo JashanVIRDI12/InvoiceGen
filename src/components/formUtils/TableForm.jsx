@@ -142,7 +142,7 @@ export default function TableForm({
                     selectedCurrency={selectedCurrency}
                     editRow={editRow}
                     deleteRow={deleteRow}
-                    isEditable={true} // Pass the isEditable prop
+                    isEditable={true}
                 />
             </section>
         </div>
