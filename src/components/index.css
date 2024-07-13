@@ -40,7 +40,7 @@ label {
     width: 210mm;
 
     height: 282mm;
-    font-size: 11px;
+    font-size: 10px;
     background: #FFF;
     overflow: visible;
   }
@@ -51,27 +51,6 @@ label {
   }
 }
 
-/*.details-container {*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-/*  flex-wrap: wrap;*/
-/*  width: 30%;*/
-/*  gap: 1rem;*/
-/*  padding: 1rem;*/
 
-/*}*/
-
-/*.details-section {*/
-/*  flex: 1 1 20%;*/
-/*  min-width: 20%;*/
-/*  word-wrap: break-word;*/
-/*  word-break: break-word;*/
-/*  overflow: hidden;*/
-/*}*/
-
-/*.details-section p {*/
-/*  word-wrap: break-word;*/
-/*  word-break: break-word;*/
-/*}*/
 
 
