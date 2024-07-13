@@ -4,49 +4,38 @@ import CurrencySelector from './CurrencySelector';
 import Table from './Table';
 
 export default function TableForm({
-                                      description,
-                                      setDescription,
-                                      quantity,
-                                      setQuantity,
-                                      price,
-                                      setPrice,
-                                      amount,
-                                      setAmount,
-                                      list,
-                                      setList,
-                                      total,
-                                      setTotal,
-                                      selectedCurrency,
-                                      setSelectedCurrency
+                                      title, setTitle,
+                                      hoursInvested, setHoursInvested,
+                                      dateBriefed, setDateBriefed,
+                                      dateDelivered, setDateDelivered,
+                                      amount, setAmount,
+                                      list, setList,
+                                      total, setTotal,
+                                      selectedCurrency, setSelectedCurrency
                                   }) {
     const [isEditing, setIsEditing] = useState(false);
     const [currentId, setCurrentId] = useState(null);
-    const [customFields, setCustomFields] = useState({});
 
     useEffect(() => {
-        setAmount(quantity * price);
-    }, [quantity, price, setAmount]);
-
-    useEffect(() => {
-        const newTotal = list.reduce((acc, item) => acc + item.amount, 0);
+        const newTotal = list.reduce((acc, item) => acc + parseFloat(item.amount || 0), 0);
         setTotal(newTotal);
     }, [list, setTotal]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (!description || !quantity || !price) {
+        if (!title || !hoursInvested || !dateBriefed || !dateDelivered || !amount) {
             alert('Please fill in all fields.');
             return;
         }
 
         const newItem = {
             id: isEditing ? currentId : uuid(),
-            description,
-            quantity,
-            price,
-            amount,
-            customFields
+            title,
+            hoursInvested,
+            dateBriefed,
+            dateDelivered,
+            amount: parseFloat(amount)
         };
 
         if (isEditing) {
@@ -57,11 +46,11 @@ export default function TableForm({
             setList([...list, newItem]);
         }
 
-        setDescription("");
-        setQuantity("");
-        setPrice("");
+        setTitle("");
+        setHoursInvested("");
+        setDateBriefed("");
+        setDateDelivered("");
         setAmount("");
-        setCustomFields({});
     };
 
     const deleteRow = (id) => {
@@ -70,11 +59,11 @@ export default function TableForm({
 
     const editRow = (id) => {
         const itemToEdit = list.find(item => item.id === id);
-        setDescription(itemToEdit.description);
-        setQuantity(itemToEdit.quantity);
-        setPrice(itemToEdit.price);
+        setTitle(itemToEdit.title);
+        setHoursInvested(itemToEdit.hoursInvested);
+        setDateBriefed(itemToEdit.dateBriefed);
+        setDateDelivered(itemToEdit.dateDelivered);
         setAmount(itemToEdit.amount);
-        setCustomFields(itemToEdit.customFields);
         setIsEditing(true);
         setCurrentId(id);
     };
@@ -82,49 +71,62 @@ export default function TableForm({
     return (
         <div className="container mx-auto p-4">
             <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-md">
-                <div className="flex flex-col">
-                    <div className="mb-4">
-                        <label htmlFor="description" className="block text-sm font-medium text-gray-700">Enter Item Description</label>
+                <div className="flex flex-col mb-4">
+                    <label htmlFor="title" className="block text-sm font-medium text-gray-700">Title</label>
+                    <input
+                        type="text"
+                        id="title"
+                        placeholder="Title"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                        className="mt-1 p-2 border rounded w-full"
+                    />
+                </div>
+                <div className="flex flex-col lg:flex-row lg:justify-between mb-4">
+                    <div className="flex flex-col w-full lg:w-1/3 lg:pr-2 mb-4 lg:mb-0">
+                        <label htmlFor="hoursInvested" className="block text-sm font-medium text-gray-700">Hours Invested</label>
                         <input
-                            type="text"
-                            name="description"
-                            id="description"
-                            placeholder="Item Description"
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
+                            type="number"
+                            id="hoursInvested"
+                            placeholder="Hours Invested"
+                            value={hoursInvested}
+                            onChange={(e) => setHoursInvested(Number(e.target.value))}
                             className="mt-1 p-2 border rounded w-full"
                         />
                     </div>
-                    <div className="flex flex-col lg:flex-row lg:justify-between mb-4">
-                        <div className="flex flex-col w-full lg:w-1/3 lg:pr-2 mb-4 lg:mb-0">
-                            <label htmlFor="quantity" className="block text-sm font-medium text-gray-700">Enter Quantity</label>
-                            <input
-                                type="number"
-                                name="quantity"
-                                id="quantity"
-                                placeholder="Quantity"
-                                value={quantity}
-                                onChange={(e) => setQuantity(Number(e.target.value))}
-                                className="mt-1 p-2 border rounded w-full"
-                            />
-                        </div>
-                        <div className="flex flex-col w-full lg:w-1/3 lg:px-2 mb-4 lg:mb-0">
-                            <label htmlFor="price" className="block text-sm font-medium text-gray-700">Enter Price</label>
-                            <input
-                                type="number"
-                                name="price"
-                                id="price"
-                                placeholder="Price"
-                                value={price}
-                                onChange={(e) => setPrice(Number(e.target.value))}
-                                className="mt-1 p-2 border rounded w-full"
-                            />
-                        </div>
-                        <div className="flex flex-col w-full lg:w-1/3 lg:pl-2">
-                            <label htmlFor="amount" className="block text-sm font-medium text-gray-700">Amount</label>
-                            <p className="mt-1 p-2 border rounded w-full bg-gray-100">{amount}</p>
-                        </div>
+                    <div className="flex flex-col w-full lg:w-1/3 lg:px-2 mb-4 lg:mb-0">
+                        <label htmlFor="dateBriefed" className="block text-sm font-medium text-gray-700">Date Briefed</label>
+                        <input
+                            type="date"
+                            id="dateBriefed"
+                            placeholder="Date Briefed"
+                            value={dateBriefed}
+                            onChange={(e) => setDateBriefed(e.target.value)}
+                            className="mt-1 p-2 border rounded w-full"
+                        />
                     </div>
+                    <div className="flex flex-col w-full lg:w-1/3 lg:pl-2">
+                        <label htmlFor="dateDelivered" className="block text-sm font-medium text-gray-700">Date Delivered</label>
+                        <input
+                            type="date"
+                            id="dateDelivered"
+                            placeholder="Date Delivered"
+                            value={dateDelivered}
+                            onChange={(e) => setDateDelivered(e.target.value)}
+                            className="mt-1 p-2 border rounded w-full"
+                        />
+                    </div>
+                </div>
+                <div className="flex flex-col mb-4">
+                    <label htmlFor="amount" className="block text-sm font-medium text-gray-700">Amount</label>
+                    <input
+                        type="number"
+                        id="amount"
+                        placeholder="Amount"
+                        value={amount}
+                        onChange={(e) => setAmount(e.target.value)}
+                        className="mt-1 p-2 border rounded w-full"
+                    />
                 </div>
                 <CurrencySelector selectedCurrency={selectedCurrency} setSelectedCurrency={setSelectedCurrency} />
                 <button
@@ -148,6 +150,8 @@ export default function TableForm({
         </div>
     );
 }
+
+
 
 
 

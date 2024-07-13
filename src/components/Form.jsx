@@ -16,10 +16,16 @@ function Form({
                   invoiceDate,
                   dueDate,
                   notes,
-                  description,
-                  quantity,
-                  price,
+                  title,
+                  setTitle,
+                  hoursInvested,
+                  setHoursInvested,
+                  dateBriefed,
+                  setDateBriefed,
+                  dateDelivered,
+                  setDateDelivered,
                   amount,
+                  setAmount,
                   accountHolder,
                   bankNotes,
                   setBankNotes,
@@ -46,10 +52,6 @@ function Form({
                   setInvoiceDate,
                   setDueDate,
                   setNotes,
-                  setDescription,
-                  setQuantity,
-                  setPrice,
-                  setAmount,
                   setAccountHolder,
               }) {
     return (
@@ -248,12 +250,14 @@ function Form({
                 </div>
             </div>
             <TableForm
-                description={description}
-                setDescription={setDescription}
-                quantity={quantity}
-                setQuantity={setQuantity}
-                price={price}
-                setPrice={setPrice}
+                title={title}
+                setTitle={setTitle}
+                hoursInvested={hoursInvested}
+                setHoursInvested={setHoursInvested}
+                dateBriefed={dateBriefed}
+                setDateBriefed={setDateBriefed}
+                dateDelivered={dateDelivered}
+                setDateDelivered={setDateDelivered}
                 amount={amount}
                 setAmount={setAmount}
                 list={list}

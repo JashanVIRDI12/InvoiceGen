@@ -11,6 +11,9 @@ import Details from "./components/formUtils/Details";
 import Notes from "./components/formUtils/Notes";
 import Table from "./components/formUtils/Table";
 import './components/index.css';
+import Register from "./components/Register";
+import Login from "./components/Login";
+import Profile from "./components/Profile";
 
 function App() {
     const [showInvoice, setShowInvoice] = useState(false);
@@ -27,12 +30,13 @@ function App() {
     const [invoiceDate, setInvoiceDate] = useState("");
     const [dueDate, setDueDate] = useState("");
     const [notes, setNotes] = useState("");
-    const [description, setDescription] = useState("");
-    const [quantity, setQuantity] = useState("");
-    const [price, setPrice] = useState("");
+    const [title, setTitle] = useState("");
+    const [hoursInvested, setHoursInvested] = useState("");
+    const [dateBriefed, setDateBriefed] = useState("");
+    const [dateDelivered, setDateDelivered] = useState("");
     const [amount, setAmount] = useState("");
     const [accountHolder, setAccountHolder] = useState("");
-    const [bankNotes, setBankNotes] = useState(""); // New state for additional bank notes
+    const [bankNotes, setBankNotes] = useState("");
     const [ifsc, setIfsc] = useState(""); // New state for IFSC code
     const [branchName, setBranchName] = useState(""); // New state for branch name
     const [list, setList] = useState([]);
@@ -44,7 +48,11 @@ function App() {
     return (
         <Router>
             <Navbar />
+
             <Routes>
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/profile" element={<Profile />} />
                 <Route path="/" element={<Home />} />
                 <Route path="/invoice" element={
                     <main className="invoice-container p-5 m-12 lg:max-w-2xl xl:mx-auto bg-white rounded shadow md:max-w-xl xl:max-w-4xl md:mx-auto">
@@ -53,7 +61,7 @@ function App() {
                                 <div className="flex sm:justify-center xl:justify-end xl:my-0 sm:mb-8">
                                     <ReactToPrint
                                         trigger={() => (
-                                            <button className='bg-gradient-to-r from-green-700 to-green-900 text-white font-bold py-2 px-8 rounded shadow  hover:from-green-900 hover:to-green-700 transition-all duration-300'>
+                                            <button className='bg-gradient-to-r from-green-700 to-green-900 text-white font-bold py-2 px-8 rounded shadow hover:from-green-900 hover:to-green-700 transition-all duration-300'>
                                                 Print / Download
                                             </button>
                                         )}
@@ -77,19 +85,21 @@ function App() {
                                         clientAddress={clientAddress}
                                     />
                                     <Table
-                                        description={description}
-                                        price={price}
                                         amount={amount}
-                                        quantity={quantity}
                                         list={list}
                                         setList={setList}
                                         total={total}
                                         setTotal={setTotal}
                                         selectedCurrency={selectedCurrency}
-                                        setDescription={setDescription}
-                                        setQuantity={setQuantity}
-                                        setPrice={setPrice}
                                         setAmount={setAmount}
+                                        title={title}
+                                        setTitle={setTitle}
+                                        hoursInvested={hoursInvested}
+                                        setHoursInvested={setHoursInvested}
+                                        dateBriefed={dateBriefed}
+                                        setDateBriefed={setDateBriefed}
+                                        dateDelivered={dateDelivered}
+                                        setDateDelivered={setDateDelivered}
                                     />
                                     <Notes notes={notes} />
                                     <Footer
@@ -103,7 +113,7 @@ function App() {
                                 </div>
                                 <button
                                     onClick={() => setShowInvoice(!showInvoice)}
-                                    className="ml-5 bg-gradient-to-r from-blue-700 to-blue-900 mt-9 text-white font-bold py-2 px-8 rounded shadow  hover:from-blue-900 hover:to-blue-700 transition-all duration-300"
+                                    className="ml-5 bg-gradient-to-r from-blue-700 to-blue-900 mt-9 text-white font-bold py-2 px-8 rounded shadow hover:from-blue-900 hover:to-blue-700 transition-all duration-300"
                                 >
                                     Edit Information
                                 </button>
@@ -124,9 +134,6 @@ function App() {
                                 invoiceDate={invoiceDate}
                                 dueDate={dueDate}
                                 notes={notes}
-                                description={description}
-                                quantity={quantity}
-                                price={price}
                                 amount={amount}
                                 accountHolder={accountHolder}
                                 bankNotes={bankNotes}
@@ -154,11 +161,16 @@ function App() {
                                 setInvoiceDate={setInvoiceDate}
                                 setDueDate={setDueDate}
                                 setNotes={setNotes}
-                                setDescription={setDescription}
-                                setQuantity={setQuantity}
-                                setPrice={setPrice}
                                 setAmount={setAmount}
                                 setAccountHolder={setAccountHolder}
+                                title={title}
+                                setTitle={setTitle}
+                                hoursInvested={hoursInvested}
+                                setHoursInvested={setHoursInvested}
+                                dateBriefed={dateBriefed}
+                                setDateBriefed={setDateBriefed}
+                                dateDelivered={dateDelivered}
+                                setDateDelivered={setDateDelivered}
                             />
                         )}
                     </main>
@@ -169,8 +181,6 @@ function App() {
 }
 
 export default App;
-
-
 
 
 
