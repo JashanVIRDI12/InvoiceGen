@@ -10,7 +10,7 @@ export default function Table({ list, setList, total, setTotal, selectedCurrency
                 <table className="min-w-full divide-y divide-gray-200 border border-gray-200 shadow-lg">
                     <thead className="bg-gray-100">
                     <tr>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border">Title</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border w-40">Title</th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border">Hours Invested</th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border">Date Briefed</th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border">Date Delivered</th>
@@ -23,11 +23,11 @@ export default function Table({ list, setList, total, setTotal, selectedCurrency
                     <tbody className="bg-white divide-y divide-gray-200">
                     {list.map((item) => (
                         <tr key={item.id}>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 border">{item.title}</td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 border">{item.hoursInvested}</td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 border">{item.dateBriefed}</td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 border">{item.dateDelivered}</td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 border">{`${currencySymbols[selectedCurrency]} ${item.amount}`}</td>
+                            <td className="py-2 px-6 text-sm text-gray-900 border w-60 overflow-hidden text-ellipsis">{item.title}</td>
+                            <td className="py-2 px-6 text-sm text-gray-900 border w-20">{item.hoursInvested}</td>
+                            <td className="py-2 px-6 text-sm text-gray-900 border w-20">{item.dateBriefed}</td>
+                            <td className="py-2 px-6 text-sm text-gray-900 border w-20">{item.dateDelivered}</td>
+                            <td className="py-2 px-6 text-sm text-gray-900 border w-20">{`${currencySymbols[selectedCurrency]} ${item.amount}`}</td>
                             {isEditable && (
                                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium border">
                                     <button onClick={() => editRow(item.id)} className="text-blue-600 hover:text-blue-900">
@@ -52,6 +52,7 @@ export default function Table({ list, setList, total, setTotal, selectedCurrency
         </div>
     );
 }
+
 
 
 
