@@ -24,12 +24,12 @@ export default function Table({ list, setList, total, setTotal, selectedCurrency
                     {list.map((item) => (
                         <tr key={item.id}>
                             <td className="py-2 px-6 text-sm text-gray-900 border w-60 overflow-hidden text-ellipsis">{item.title}</td>
-                            <td className="py-2 px-6 text-sm text-gray-900 border w-20">{item.hoursInvested}</td>
-                            <td className="py-2 px-6 text-sm text-gray-900 border w-20">{item.dateBriefed}</td>
-                            <td className="py-2 px-6 text-sm text-gray-900 border w-20">{item.dateDelivered}</td>
-                            <td className="py-2 px-6 text-sm text-gray-900 border w-20">{`${currencySymbols[selectedCurrency]} ${item.amount}`}</td>
+                            <td className="py-2 px-6 text-sm text-gray-900 border">{item.hoursInvested}</td>
+                            <td className="py-2 px-6 text-sm text-gray-900 border">{item.dateBriefed}</td>
+                            <td className="py-2 px-6 text-sm text-gray-900 border">{item.dateDelivered}</td>
+                            <td className="py-2 px-6 text-sm text-gray-900 border w-40">{`${currencySymbols[selectedCurrency]} ${item.amount}`}</td>
                             {isEditable && (
-                                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium border">
+                                <td className="px-6 py-4 text-right text-sm font-medium border w-6">
                                     <button onClick={() => editRow(item.id)} className="text-blue-600 hover:text-blue-900">
                                         <FontAwesomeIcon icon={faEdit} />
                                     </button>
